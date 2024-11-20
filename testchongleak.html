@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Trang web tải game">
+    <title>make by @tuananh</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: url('https://yamicomputer.com/image/data/anht11/hinh-nen-anime-4k-dep-11.jpg') no-repeat center center fixed;
+            background-size: cover;
+            background-position: center center;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            padding: 0;
+            overflow: hidden; /* Ngăn cuộn trang */
+        }
+
+        /* Cố định header và footer */
+        header, footer {
+            position: fixed;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Cố định header */
+        header {
+            top: 0;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #00f2f2;
+            font-style: italic; /* Nghiêng nhẹ */
+        }
+
+        /* Cố định footer */
+        footer {
+            bottom: 0;
+            font-size: 0.8rem;
+            font-style: italic; /* Nghiêng nhẹ */
+            font-weight: normal;
+        }
+
+        /* Container game */
+        .container {
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 25px;
+            max-width: 800px; /* Đảm bảo chiều rộng không quá lớn */
+            width: 90%; /* Chiếm 90% chiều rộng màn hình */
+            color: #fff;
+            position: relative;
+            overflow-y: auto; /* Cho phép cuộn khi quá dài */
+            max-height: calc(100vh - 120px); /* Chiều cao tối đa, tránh che mất header và footer */
+            margin: 0 auto; /* Đảm bảo căn giữa màn hình */
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            font-style: italic;
+            color: #00f2f2;
+            margin-bottom: 15px;
+        }
+
+        .game-description {
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            font-style: italic;
+            font-weight: normal;
+        }
+
+        .game-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        /* Game item */
+        .game-item {
+            width: 180px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 20px; /* Bo tròn góc các item */
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            height: 300px;
+        }
+
+        .game-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .game-image img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            margin-bottom: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .game-item:hover .game-image img {
+            transform: scale(1.05);
+        }
+
+        .download-buttons {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .download-button {
+            background-color: #00f2f2;
+            color: #fff;
+            padding: 10px 12px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 20px; /* Bo tròn góc nút */
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            width: 100%;
+            max-width: 180px;
+        }
+
+        .download-button:hover {
+            background-color: #00c2c2;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive cho các game item */
+        @media (max-width: 768px) {
+            .game-item {
+                width: 150px;
+                height: auto; /* Cho phép chiều cao tự điều chỉnh */
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .game-description {
+                font-size: 0.8rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- Dòng bản quyền -->
+<footer>
+    Bản quyền thuộc &copy; <span style="color: #00f2f2;">@tuananh</span>
+</footer>
+
+<!-- Header -->
+<header>
+    Welcome to website by @tuananhdev
+</header>
+
+<!-- Trang chính người dùng -->
+<div class="container">
+    <p class="game-description">
+        Hack miễn phí ở đây, tải và chơi, đừng mang đi bán nhé!
+    </p>
+
+    <!-- Danh sách game -->
+    <div class="game-list">
+        <!-- Game 1 -->
+        <div class="game-item">
+            <div class="game-image">
+                <img src="https://i.ibb.co/QNNXSnW/image-250x150.png" alt="Liên Quân Mobile Cheat">
+            </div>
+            <h3>Liên Quân Mobile Cheat</h3>
+            <div class="download-buttons">
+                <button class="download-button" onclick="window.location.href='game1-android.apk'">Download For Android</button>
+                <button class="download-button" onclick="window.location.href='game1-ios.ipa'">Download For iOS</button>
+            </div>
+        </div>
+
+        <!-- Game 2 -->
+        <div class="game-item">
+            <div class="game-image">
+                <img src="https://i.ibb.co/QNNXSnW/image-250x150.png" alt="Arena Of Valor Cheat">
+            </div>
+            <h3>Arena Of Valor Cheat</h3>
+            <div class="download-buttons">
+                <button class="download-button" onclick="window.location.href='game2-android.apk'">Download For Android</button>
+                <button class="download-button" onclick="window.location.href='game2-ios.ipa'">Download For iOS</button>
+            </div>
+        </div>
+
+        <!-- Game 3 -->
+        <div class="game-item">
+            <div class="game-image">
+                <img src="https://i.ibb.co/QNNXSnW/image-250x150.png" alt="Garena Aov Day Cheat">
+            </div>
+            <h3>Garena Aov Day Cheat</h3>
+            <div class="download-buttons">
+                <button class="download-button" onclick="window.location.href='game3-android.apk'">Download For Android</button>
+                <button class="download-button" onclick="window.location.href='game3-ios.ipa'">Download For iOS</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts để bảo mật trang -->
+<script>
+    // Chặn phím tắt Ctrl + S, Ctrl + P, Ctrl + U, F12
+    document.addEventListener('keydown', function(e) {
+        if ((e.ctrlKey && e.key === 's') || e.key === 'F12' || (e.ctrlKey && e.key === 'u') || (e.ctrlKey && e.key === 'p') || (e.ctrlKey && e.shiftKey && e.key === 'i')) {
+            e.preventDefault();
+            window.location.href = "about:blank"; // Thoát ngay lập tức
+        }
+    });
+
+    // Chặn chuột phải
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        window.location.href = "about:blank"; // Thoát ngay lập tức
+    });
+
+    // Tạo hiệu ứng cho game items khi load trang
+    window.addEventListener('load', function() {
+        const gameItems = document.querySelectorAll('.game-item');
+        gameItems.forEach((item, index) => {
+            setTimeout(() => {
+                item.classList.add('visible');
+            }, index * 300); // Delay để các item hiện ra dần
+        });
+    });
+</script>
+
+</body>
+</html>
